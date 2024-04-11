@@ -1,0 +1,21 @@
+###
+GET http://localhost:3000/videos HTTP/1.1
+
+###
+GET http://localhost:3000/videos/84e96018-4022-434e-80bf-000ce4cd12b8 HTTP/1.1
+###
+GET http://localhost:3000/videos/000ce4cd12b8 HTTP/1.1
+
+###
+POST http://localhost:3000/videos/84e96018-4022-434e-80bf-000ce4cd12b8/comments HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Trudy Jankowski",
+    "comment": "I really enjoyed this video! Thanks for posting"
+}
+
+###
+DELETE http://localhost:3000/videos/84e96018-4022-434e-80bf-000ce4cd12b8/comments/0184de5d-e8fd-4f16-a8c3-b6a7c87d9abc HTTP/1.1
+
+
