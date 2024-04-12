@@ -9,15 +9,29 @@ const readVideos = () => {
   return JSON.parse(fs.readFileSync(VIDEOS_PATH));
 };
 
-// GET /videos
-router.get("/", (req, res) => {
-  const videosData = readVideos();
-  const responseData = videosData.map((video) => {
-    const { id, title, channel, image } = video;
-    return { id, title, channel, image };
+// GET /videos and POST /videos
+router
+  .get("/", (req, res) => {
+    const videosData = readVideos();
+    const responseData = videosData.map((video) => {
+      const { id, title, channel, image } = video;
+      return { id, title, channel, image };
+    });
+    res.json(responseData);
+  })
+  .post("/", (req, res) => {
+    console.log(req.body);
+    const newVideo = {
+      id: uuidv4(),
+      timestamp: new Date().getTime(),
+      ...req.body,
+    };
+    // console.log(newVideo);
+    const videosData = readVideos();
+    videosData.push(newVideo);
+    fs.writeFileSync("./data/videos.json", JSON.stringify(videosData));
+    res.status(201).json(newVideo);
   });
-  res.json(responseData);
-});
 
 // GET /videos/:id
 router.get("/:id", (req, res) => {
@@ -43,9 +57,8 @@ router.post("/:id/comments", (req, res) => {
   // generate a new comment obj and push to the comments array
   const currentTime = new Date();
   const timestamp = currentTime.getTime();
-  const videoId = uuidv4();
   // console.log(videoId);
-  const newComment = { ...req.body, id: videoId, timestamp };
+  const newComment = { ...req.body, id: uuidv4(), timestamp };
   // console.log(newComment);
 
   const videosData = readVideos();
@@ -56,7 +69,7 @@ router.post("/:id/comments", (req, res) => {
   // write to the videosData file
   fs.writeFileSync("./data/videos.json", JSON.stringify(videosData));
 
-  res.json(newComment);
+  res.status(201).json(newComment);
 });
 
 // DELETE /videos/:videoId/comments/:commentId

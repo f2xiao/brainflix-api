@@ -1,5 +1,20 @@
 ###
 GET http://localhost:3000/videos HTTP/1.1
+###
+POST http://localhost:3000/videos HTTP/1.1
+Content-Type: application/json
+
+{
+    "title":"Crouching Tiger, Hidden Dragon",
+    "description":"In 19th century Qing Dynasty China, a warrior (Chow Yun-Fat) gives his sword, Green Destiny, to his lover (Michelle Yeoh) to deliver to safe keeping, but it is stolen, and the chase is on to find it. The search leads to the House of Yu where the story takes on a whole different level.",
+    "channel": "An Li",
+    "image": "http:localhost:3000/images/image0",
+    "views": "6000",
+    "likes": "3000",
+    "duration": "2:04",
+    "video": "http:localhost:3000/BrainStation Sample Video.mp4",
+    "comments": []
+}
 
 ###
 GET http://localhost:3000/videos/84e96018-4022-434e-80bf-000ce4cd12b8 HTTP/1.1
