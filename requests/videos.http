@@ -9,8 +9,8 @@ Content-Type: application/json
     "description":"BrainStation coding bootcamps are 400-hour, project-based programs that have helped thousands of bootcamp students launch new careers in the tech industry. Gain in-demand technical skills with full-time or part-time bootcamps",
     "channel": "BrainStation",
     "image": "http://localhost:8080/images/image9.jpg",
-    "views": "6000",
-    "likes": "8080",
+    "views": "106,000",
+    "likes": "8,080",
     "duration": "0:20",
     "video": "http://localhost:8080/BrainStation Sample Video.mp4",
     "comments": []

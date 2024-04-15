@@ -14,7 +14,7 @@ const requestLogger = (request, response, next) => {
 const requireApiKey = (request, response, next) => {
   const api_key = request.query.api_key;
   if (api_key) {
-    if (api_key === "32466d85-c74a-4004-8864-0d31ddf91185") {
+    if (api_key === process.env.API_KEY) {
       next();
     }
   } else {
@@ -25,8 +25,8 @@ const requireApiKey = (request, response, next) => {
 };
 
 app.use(cors());
-app.use(express.json());
 app.use(express.static("./public"));
+app.use(express.json());
 app.use(requestLogger);
 app.use(requireApiKey);
 app.use("/videos", videosRoutes);
