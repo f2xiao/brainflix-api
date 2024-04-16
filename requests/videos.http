@@ -36,4 +36,5 @@ DELETE http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8/comment
 ###
 PUT http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8/likes?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
 
-
+###
+GET http://localhost:8080/notes?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
