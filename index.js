@@ -25,12 +25,18 @@ const requireApiKey = (request, response, next) => {
   }
 };
 
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: "unknown endpoint" });
+};
+
 app.use(cors());
 app.use(express.static("./public"));
 app.use(express.json());
 app.use(requestLogger);
 app.use(requireApiKey);
 app.use("/videos", videosRoutes);
+
+app.use(unknownEndpoint);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
