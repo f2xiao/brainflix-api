@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/videos HTTP/1.1
+GET http://localhost:8080/videos?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
 ###
 POST http://localhost:8080/videos?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
 Content-Type: application/json
@@ -17,12 +17,12 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8 HTTP/1.1
+GET http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
 ###
-GET http://localhost:8080/videos/000ce4cd12b8 HTTP/1.1
+GET http://localhost:8080/videos/000ce4cd12b8?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
 
 ###
-POST http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8/comments HTTP/1.1
+POST http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8/comments?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -31,6 +31,9 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8/comments/0184de5d-e8fd-4f16-a8c3-b6a7c87d9abc HTTP/1.1
+DELETE http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8/comments/0184de5d-e8fd-4f16-a8c3-b6a7c87d9abc?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
+
+###
+PUT http://localhost:8080/videos/84e96018-4022-434e-80bf-000ce4cd12b8/likes?api_key=32466d85-c74a-4004-8864-0d31ddf91185 HTTP/1.1
 
 

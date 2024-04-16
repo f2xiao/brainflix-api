@@ -51,14 +51,14 @@ router.get("/:id", (req, res) => {
 
 // POST /videos/:id/comments
 router.post("/:id/comments", (req, res) => {
-  console.log(`params-id: `, req.params.id);
-  console.log(`body`, req.body);
+  // console.log(`params-id: `, req.params.id);
+  // console.log(`body`, req.body);
 
   // generate a new comment obj and push to the comments array
   const currentTime = new Date();
   const timestamp = currentTime.getTime();
   // console.log(videoId);
-  const newComment = { ...req.body, id: uuidv4(), timestamp };
+  const newComment = { ...req.body, id: uuidv4(), timestamp, likes: 0 };
   // console.log(newComment);
 
   const videosData = readVideos();
@@ -76,15 +76,15 @@ router.post("/:id/comments", (req, res) => {
 router.delete("/:videoId/comments/:commentId", (req, res) => {
   const videosData = readVideos();
 
-  // const returnedVideo = videosData.find(
-  //   (video) => video.id === req.params.videoId
-  // );
+  const returnedVideo = videosData.find(
+    (video) => video.id === req.params.videoId
+  );
 
-  // if (!returnedVideo) {
-  //   return res.status(404).json({
-  //     message: "No video with that id exists",
-  //   });
-  // }
+  if (!returnedVideo) {
+    return res.status(404).json({
+      message: "No video with that id exists",
+    });
+  }
 
   const deletedComment = videosData
     .find((video) => video.id === req.params.videoId)
@@ -97,7 +97,28 @@ router.delete("/:videoId/comments/:commentId", (req, res) => {
 
   fs.writeFileSync("./data/videos.json", JSON.stringify(videosData));
 
-  res.json(deletedComment);
+  res.status(200).json(deletedComment);
+});
+
+// PUT /:videoId/likes
+
+router.put("/:videoId/likes", (req, res) => {
+  let videosData = readVideos();
+
+  videosData = videosData.map((video) =>
+    video.id === req.params.videoId
+      ? {
+          ...video,
+          likes: `${(
+            Number(video.likes.split(",").join("")) + 1
+          ).toLocaleString()}`,
+        }
+      : video
+  );
+
+  fs.writeFileSync("./data/videos.json", JSON.stringify(videosData));
+
+  res.status(204).end();
 });
 
 module.exports = router;
